@@ -15,8 +15,8 @@
   
 ## :minidisc: Protótipo
 <p align="center">
-  <img width="400" src="https://i.imgur.com/mCdyRXe.png">
-  <img width="400" src="https://i.imgur.com/ukN2aiz.png">
+  <img width="420" src="https://i.imgur.com/mCdyRXe.png">
+  <img width="420" src="https://i.imgur.com/ukN2aiz.png">
   <img width="503" src="https://i.imgur.com/DkrCm1c.png">
   <img width="503" src="https://i.imgur.com/4jHFSeJ.png">
   <img width="503" src="https://i.imgur.com/qRnXqQx.png">
