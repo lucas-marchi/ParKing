@@ -15,12 +15,12 @@
   
 ## :minidisc: Protótipo
 <p align="center">
-  <img width="413" src="https://i.imgur.com/mCdyRXe.png">
-  <img width="413" src="https://i.imgur.com/ukN2aiz.png">
-  <img width="503" src="https://i.imgur.com/DkrCm1c.png">
-  <img width="503" src="https://i.imgur.com/4jHFSeJ.png">
-  <img width="503" src="https://i.imgur.com/qRnXqQx.png">
-  <img width="503" src="https://i.imgur.com/7DXqI6q.png">
+  <img width="412" src="https://i.imgur.com/mCdyRXe.png">
+  <img width="412" src="https://i.imgur.com/ukN2aiz.png">
+  <img width="412" src="https://i.imgur.com/DkrCm1c.png">
+  <img width="412" src="https://i.imgur.com/4jHFSeJ.png">
+  <img width="412" src="https://i.imgur.com/qRnXqQx.png">
+  <img width="412" src="https://i.imgur.com/7DXqI6q.png">
 </p>
 
 ## :desktop_computer: Tecnologias
