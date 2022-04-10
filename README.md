@@ -6,11 +6,9 @@
 </p>
 
 <p align="center">
- <a href="#Por que?">Por que?</a> •
- <a href="#Protótipo">Protótipo</a> • 
+ <a href="#por que?">Por que?</a> •
+ <a href="#protótipo">Protótipo</a> • 
  <a href="#tecnologias">Tecnologias</a> • 
- <a href="#contribuicao">Contribuição</a> • 
- <a href="#licenc-a">Licença</a> • 
  <a href="#autor">Autor</a>
 </p>
 
@@ -27,3 +25,9 @@
   <img src="https://i.imgur.com/qRnXqQx.png">
   <img src="https://i.imgur.com/7DXqI6q.png">
 </p>
+
+## :desktop_computer: **Tecnologias**
+  Java, Intellij, ambiente de desenvolvimento Linux
+  
+## :man_student: **Autor**
+  Lucas Bedin Marchi  
