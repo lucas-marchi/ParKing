@@ -16,6 +16,8 @@ public class LoginView extends JFrame{
     public LoginView(String title) {
         super(title);
 
+        setSize(450, 300);
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
