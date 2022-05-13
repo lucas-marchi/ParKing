@@ -26,6 +26,7 @@ public class LoginView extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 HomeView telaHome = new HomeView(title);
                 telaHome.setVisible(true);
+
             }
         });
         cadastrarButton.addActionListener(new ActionListener() {

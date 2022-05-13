@@ -23,6 +23,20 @@ public class HomeView extends JFrame {
                 telaAluguel.setVisible(true);
             }
         });
+        buscarAluguelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BuscarAluguelView telaBuscarAluguel = new BuscarAluguelView(title);
+                telaBuscarAluguel.setVisible(true);
+            }
+        });
+        visãoGeralButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VisaoGeralView telaVisaoGeral = new VisaoGeralView(title);
+                telaVisaoGeral.setVisible(true);
+            }
+        });
     }
 
     public static void main(String[] args) {
