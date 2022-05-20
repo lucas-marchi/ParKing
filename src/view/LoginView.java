@@ -16,9 +16,10 @@ public class LoginView extends JFrame{
     public LoginView(String title) {
         super(title);
 
-        setSize(450, 300);
+        setSize(500, 500);
+        setLocationRelativeTo(null);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
         entrarButton.addActionListener(new ActionListener() {

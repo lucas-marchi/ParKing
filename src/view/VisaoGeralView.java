@@ -8,7 +8,9 @@ public class VisaoGeralView extends JFrame{
     public VisaoGeralView(String title) {
         super(title);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(pnlVisaoGeral);
         this.pack();
     }

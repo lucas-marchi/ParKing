@@ -12,7 +12,9 @@ public class BuscarAluguelView extends JFrame{
     public BuscarAluguelView(String title) {
         super(title);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(pnlBuscarAluguel);
         this.pack();
 

@@ -13,6 +13,8 @@ public class HomeView extends JFrame {
     public HomeView(String title) {
         super(title);
 
+        setLocationRelativeTo(null);
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(panelHome);
         this.pack();
