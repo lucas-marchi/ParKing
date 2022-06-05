@@ -1,27 +1,36 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class FormCadastroView extends JFrame{
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JButton salvarButton;
+public class FormCadastroView extends JDialog{
+    private JTextField tfUser;
+    private JButton voltarButton;
     private JPanel cadastroPanel;
+    private JPasswordField pfPassword;
+    private JButton salvarButton;
 
-    public FormCadastroView(String title) {
-        super(title);
-
+    public FormCadastroView(String parent) {
+        super();
+        setTitle("Cadastro");
+        setContentPane(cadastroPanel);
+        setMinimumSize(new Dimension(450, 474));
+        setModal(true);
         setLocationRelativeTo(null);
-
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setContentPane(cadastroPanel);
-        this.pack();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setVisible(true);
+        salvarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String user = tfUser.getText();
+                String password = String.valueOf(pfPassword.getPassword());
+            }
+        });
     }
 
-
     public static void main(String[] args) {
-        JFrame cadastroFrame = new FormCadastroView("Home");
-        cadastroFrame.setVisible(true);
+        FormCadastroView telaCadastro = new FormCadastroView(null);
     }
 }

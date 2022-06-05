@@ -1,46 +1,103 @@
 package view;
 
+import connection.User;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
-public class LoginView extends JFrame{
+public class LoginView extends JDialog{
     private JPanel mainPanel;
-    private JLabel user;
-    private JTextField textField1;
+    private User user;
+    private JTextField tfUsuario;
     private JLabel password;
     private JButton entrarButton;
     private JButton cadastrarButton;
-    private JPasswordField passwordField1;
+    private JPasswordField pfSenha;
+    private JButton Cancelar;
 
-    public LoginView(String title) {
-        super(title);
+    public LoginView(JFrame parent) {
 
-        setSize(500, 500);
-        setLocationRelativeTo(null);
+        setMinimumSize(new Dimension(450, 474));
+        setLocationRelativeTo(parent);
+        setModal(true);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
+
         entrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                HomeView telaHome = new HomeView(title);
-                telaHome.setVisible(true);
+                String usuario = tfUsuario.getText();
+                String senha = String.valueOf(pfSenha.getPassword());
 
+                user = getAuthenticatedUser(usuario, senha);
+
+                if (user != null) {
+                    HomeView homeView = new HomeView(null);
+                    homeView.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(LoginView.this,
+                            "Login ou Senha inválidos!",
+                            "Tente Novamente",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
-        cadastrarButton.addActionListener(new ActionListener() {
+        Cancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FormCadastroView telaCadastro = new FormCadastroView(title);
-                telaCadastro.setVisible(true);
+                dispose();
             }
         });
+
+        setVisible(true);
+    }
+
+    private User getAuthenticatedUser(String name, String password) {
+        User usuario = null;
+
+        final String DB_URL = "jdbc:mysql://localhost:3306/ParKing";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM users WHERE name=? AND password=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, password);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                user = new User();
+                user.name = resultSet.getString("name");
+                user.password = resultSet.getString("password");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
     }
 
     public static void main(String[] args) {
-        JFrame frame = new LoginView("ParKing's Systems");
-        frame.setVisible(true);
+        LoginView loginView = new LoginView(null);
+        User user = loginView.user;
+
+        if (user != null) {
+            System.out.println("Successful Authentication of: " + user.name);
+            System.out.println("          Usuario: " + user.name);
+        }
+        else {
+            System.out.println("Authentication canceled");
+        }
     }
 }
