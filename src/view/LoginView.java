@@ -1,6 +1,6 @@
 package view;
 
-import connection.User;
+import model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,6 @@ public class LoginView extends JDialog{
     private JTextField tfUsuario;
     private JLabel password;
     private JButton entrarButton;
-    private JButton cadastrarButton;
     private JPasswordField pfSenha;
     private JButton Cancelar;
 
