@@ -24,7 +24,7 @@
 </p>
 
 ## :desktop_computer: Tecnologias
-  Java, Intellij, ambiente de desenvolvimento Linux
+  Java, Intellij, MySQL, ambiente de desenvolvimento Linux
   
 ## :man_student: Autor
   Lucas Bedin Marchi  
