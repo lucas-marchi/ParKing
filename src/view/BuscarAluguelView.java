@@ -1,6 +1,12 @@
 package view;
 
+import dao.AluguelDAO;
+import model.Aluguel;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Optional;
 
 public class BuscarAluguelView extends JFrame{
     private JTextField textField1;
@@ -18,5 +24,23 @@ public class BuscarAluguelView extends JFrame{
         this.setContentPane(pnlBuscarAluguel);
         this.pack();
 
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                AluguelDAO dao = new AluguelDAO();
+                Optional<Aluguel> aluguelOptional = dao.findById(2L);
+                aluguelOptional.ifPresent(aluguel -> {
+                    System.out.println("ID: " + aluguel.getId());
+                    System.out.println("Nome do cliente: " + aluguel.getNomeCliente());
+                    System.out.println("Identidade do cliente: " + aluguel.getIdentidadeCliente());
+                    System.out.println("Endereço do cliente: " + aluguel.getEnderecoCliente());
+                    System.out.println("Telefone do cliente: " + aluguel.getTelefoneCliente());
+                    System.out.println("Modelo do veiculo: " + aluguel.getModeloVeiculo());
+                    System.out.println("Placa do veículo: " + aluguel.getPlacaVeiculo());
+                    System.out.println("Data de cadastro: " + aluguel.getData());
+                });
+            }
+        });
     }
 }

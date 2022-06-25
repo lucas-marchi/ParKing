@@ -1,5 +1,6 @@
 package view;
 
+import infra.ConnectionFactory;
 import model.User;
 
 import javax.swing.*;
@@ -59,16 +60,11 @@ public class LoginView extends JDialog{
     private User getAuthenticatedUser(String name, String password) {
         User usuario = null;
 
-        final String DB_URL = "jdbc:mysql://localhost:3306/ParKing";
-        final String USERNAME = "root";
-        final String PASSWORD = "root";
+        try (Connection connection = ConnectionFactory.getConnection()) {
 
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-
-            Statement stmt = conn.createStatement();
+            Statement stmt = connection.createStatement();
             String sql = "SELECT * FROM users WHERE name=? AND password=?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, password);
 
