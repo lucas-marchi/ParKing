@@ -28,13 +28,12 @@ public class AluguelDAO implements IAluguelDAO{
 
             preparedStatement.executeUpdate();
 
-            /*
+
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             resultSet.next();
 
             Long generatedId = resultSet.getLong("id");
             aluguel.setId(generatedId);
-             */
 
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -46,12 +45,43 @@ public class AluguelDAO implements IAluguelDAO{
 
     @Override
     public Aluguel update(Aluguel aluguel) {
-        return null;
+
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            String sql = "UPDATE alugueis SET nomeCliente = ?, identidadeCliente = ?, enderecoCliente = ?, telefoneCliente = ?, modeloVeiculo = ?, placaVeiculo = ?, data = ? WHERE id = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, aluguel.getNomeCliente());
+            preparedStatement.setString(2, aluguel.getIdentidadeCliente());
+            preparedStatement.setString(3, aluguel.getEnderecoCliente());
+            preparedStatement.setString(4, aluguel.getTelefoneCliente());
+            preparedStatement.setString(5, aluguel.getModeloVeiculo());
+            preparedStatement.setString(6, aluguel.getPlacaVeiculo());
+            preparedStatement.setDate(7, java.sql.Date.valueOf(aluguel.getData()));
+            preparedStatement.setLong(8, aluguel.getId());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        return aluguel;
     }
 
     @Override
     public void delete(Aluguel aluguel) {
 
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            String sql = "DELETE FROM alugueis WHERE id = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, aluguel.getId());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
@@ -74,6 +104,9 @@ public class AluguelDAO implements IAluguelDAO{
                 String modeloVeiculo = rs.getString("modeloVeiculo");
                 String placaVeiculo = rs.getString("placaVeiculo");
                 LocalDate data = rs.getDate("data").toLocalDate();
+
+                Aluguel aluguel = new Aluguel(id, nomeCliente, identidadeCliente, enderecocliente, telefoneCliente, data, placaVeiculo, modeloVeiculo);
+                alugueis.add(aluguel);
             }
 
         } catch (Exception ex) {
@@ -84,6 +117,31 @@ public class AluguelDAO implements IAluguelDAO{
 
     @Override
     public Optional<Aluguel> findById(Long id) {
-        return Optional.empty();
+        String sql = "SELECT id, nomeCliente, identidadeCliente, enderecoCliente, telefoneCliente, modeloVeiculo, placaVeiculo, data FROM alugueis WHERE id = ?";
+
+        Aluguel aluguel = null;
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Long pKey = rs.getLong("id");
+                String nomeCliente = rs.getString("nomeCliente");
+                String identidadeCliente = rs.getString("identidadeCliente");
+                String enderecocliente = rs.getString("enderecocliente");
+                String telefoneCliente = rs.getString("telefoneCliente");
+                String modeloVeiculo = rs.getString("modeloVeiculo");
+                String placaVeiculo = rs.getString("placaVeiculo");
+                LocalDate data = rs.getDate("data").toLocalDate();
+
+                aluguel = new Aluguel(pKey, nomeCliente, identidadeCliente, enderecocliente, telefoneCliente, data, placaVeiculo, modeloVeiculo);
+            }
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+        return Optional.ofNullable(aluguel);
     }
 }

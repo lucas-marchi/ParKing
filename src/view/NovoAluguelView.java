@@ -41,7 +41,7 @@ public class NovoAluguelView extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 AluguelDAO dao = new AluguelDAO();
-                Aluguel aluguel = new Aluguel();
+                /*Aluguel aluguel = new Aluguel();
 
                 aluguel.setNomeCliente(nomeTextField.getText());
                 aluguel.setIdentidadeCliente(identidadeTextField.getText());
@@ -52,6 +52,8 @@ public class NovoAluguelView extends JFrame{
                 aluguel.setData(LocalDate.now());
 
                 dao.save(aluguel);
+
+                 */
             }
         });
     }
