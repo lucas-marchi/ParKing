@@ -144,4 +144,63 @@ public class AluguelDAO implements IAluguelDAO{
         }
         return Optional.ofNullable(aluguel);
     }
+
+    public Optional<Aluguel> findByName(String nomeCliente) {
+        String sql = "SELECT id, nomeCliente, identidadeCliente, enderecoCliente, telefoneCliente, modeloVeiculo, placaVeiculo, data FROM alugueis WHERE nomeCliente = ?";
+
+        Aluguel aluguel = null;
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, nomeCliente);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Long id = rs.getLong("id");
+                String cliNome = rs.getString("nomeCliente");
+                String identidadeCliente = rs.getString("identidadeCliente");
+                String enderecocliente = rs.getString("enderecocliente");
+                String telefoneCliente = rs.getString("telefoneCliente");
+                String modeloVeiculo = rs.getString("modeloVeiculo");
+                String placaVeiculo = rs.getString("placaVeiculo");
+                LocalDate data = rs.getDate("data").toLocalDate();
+
+                aluguel = new Aluguel(id, nomeCliente, identidadeCliente, enderecocliente, telefoneCliente, data, placaVeiculo, modeloVeiculo);
+            }
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+        return Optional.ofNullable(aluguel);
+    }
+
+    public Optional<Aluguel> findByPlacaVeiculo(String placaVeiculo) {
+        String sql = "SELECT id, nomeCliente, identidadeCliente, enderecoCliente, telefoneCliente, modeloVeiculo, placaVeiculo, data FROM alugueis WHERE nomeCliente = ?";
+
+        Aluguel aluguel = null;
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, placaVeiculo);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Long id = rs.getLong("id");
+                String nomeCliente = rs.getString("nomeCliente");
+                String identidadeCliente = rs.getString("identidadeCliente");
+                String enderecocliente = rs.getString("enderecocliente");
+                String telefoneCliente = rs.getString("telefoneCliente");
+                String modeloVeiculo = rs.getString("modeloVeiculo");
+                String placaVeic = rs.getString("placaVeiculo");
+                LocalDate data = rs.getDate("data").toLocalDate();
+
+                aluguel = new Aluguel(id, nomeCliente, identidadeCliente, enderecocliente, telefoneCliente, data, placaVeiculo, modeloVeiculo);
+            }
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+        return Optional.ofNullable(aluguel);
+    }
+
 }

@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 import java.util.Optional;
 
 public class BuscarAluguelView extends JFrame{
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField nomeClienteTextField;
+    private JTextField placaVeiculoTextField;
     private JButton buscarButton;
     private JButton voltarButton;
     private JPanel pnlBuscarAluguel;
@@ -28,6 +28,7 @@ public class BuscarAluguelView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                /*
                 AluguelDAO dao = new AluguelDAO();
                 Optional<Aluguel> aluguelOptional = dao.findById(2L);
                 aluguelOptional.ifPresent(aluguel -> {
@@ -40,6 +41,35 @@ public class BuscarAluguelView extends JFrame{
                     System.out.println("Placa do veículo: " + aluguel.getPlacaVeiculo());
                     System.out.println("Data de cadastro: " + aluguel.getData());
                 });
+                 */
+
+                AluguelDAO dao = new AluguelDAO();
+                Optional<Aluguel> aluguelOptionalName = dao.findByName(nomeClienteTextField.getText());
+                Optional<Aluguel> aluguelOptionalPlaca = dao.findByPlacaVeiculo(placaVeiculoTextField.getText());
+
+                if(aluguelOptionalPlaca.isPresent()) {
+                    aluguelOptionalPlaca.ifPresent(aluguel -> {
+                        System.out.println("ID: " + aluguel.getId());
+                        System.out.println("Nome do cliente: " + aluguel.getNomeCliente());
+                        System.out.println("Identidade do cliente: " + aluguel.getIdentidadeCliente());
+                        System.out.println("Endereço do cliente: " + aluguel.getEnderecoCliente());
+                        System.out.println("Telefone do cliente: " + aluguel.getTelefoneCliente());
+                        System.out.println("Modelo do veiculo: " + aluguel.getModeloVeiculo());
+                        System.out.println("Placa do veículo: " + aluguel.getPlacaVeiculo());
+                        System.out.println("Data de cadastro: " + aluguel.getData());
+                    });
+                } else {
+                    aluguelOptionalName.ifPresent(aluguel -> {
+                        System.out.println("ID: " + aluguel.getId());
+                        System.out.println("Nome do cliente: " + aluguel.getNomeCliente());
+                        System.out.println("Identidade do cliente: " + aluguel.getIdentidadeCliente());
+                        System.out.println("Endereço do cliente: " + aluguel.getEnderecoCliente());
+                        System.out.println("Telefone do cliente: " + aluguel.getTelefoneCliente());
+                        System.out.println("Modelo do veiculo: " + aluguel.getModeloVeiculo());
+                        System.out.println("Placa do veículo: " + aluguel.getPlacaVeiculo());
+                        System.out.println("Data de cadastro: " + aluguel.getData());
+                    });
+                }
             }
         });
     }
